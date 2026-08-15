@@ -36,7 +36,7 @@ dvwa/
 
 ```bash
 ./sync-logs.sh &      # keeps logs/access.log up to date with the container
-python3 detect.py     # scans the current log and prints findings + summaries
+watch python3 detect.py     # scans the current log and prints findings + summaries
 ./clear-logs.sh        # resets both the container log and the local copy
 ```
 
