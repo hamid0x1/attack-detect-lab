@@ -2,7 +2,7 @@
 
 Target: [Damn Vulnerable Web Application (DVWA)](https://github.com/digininja/DVWA), run locally via Docker (`vulnerables/web-dvwa`), security level set to **Low** unless noted otherwise.
 
-Environment: Ubuntu (WSL2) on Windows 10 LTSC, Burp Suite, a persistent Kali Linux container for Hydra.
+Environment: Ubuntu (WSL2) on Windows 10 LTSC, a persistent Kali Linux container for Hydra.
 
 ## Structure
 
