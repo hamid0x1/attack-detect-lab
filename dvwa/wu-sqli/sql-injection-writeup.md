@@ -95,4 +95,4 @@ The application builds SQL queries by directly concatenating user input into the
 
 ## Detection angle (Blue Team framing)
 
-From a SOC perspective, all three payloads above share a fingerprint that log monitoring should catch: literal SQL keywords (`OR`, `UNION`, `SELECT`, `--`) and stray single-quote characters inside a field that should only ever contain a numeric ID. A basic detection rule flagging `UNION`, `SELECT`, `' OR `, or `--` inside URL parameters/form fields would have caught all three attempts here. This is the exact pattern the accompanying detection script (`../detect.py`) is built to flag.
+From a SOC perspective, all three payloads above share a fingerprint that log monitoring should catch: literal SQL keywords (`OR`, `UNION`, `SELECT`, `--`) and stray single-quote characters inside a field that should only ever contain a numeric ID. A basic detection rule flagging `UNION`, `SELECT`, `' OR `, or `--` inside URL parameters/form fields would have caught all three attempts here. This is the exact pattern the accompanying detection script (`../../detect.py`) is built to flag.
