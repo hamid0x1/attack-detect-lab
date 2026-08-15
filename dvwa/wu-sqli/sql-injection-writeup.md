@@ -14,9 +14,8 @@ Background on the underlying SQL concepts (SELECT, WHERE, LIKE, UNION mechanics)
 
 **Payload:** `1`
 
-![base](./screenshot-0-base.png)
-
 **Result:**
+![base](./screenshot-0-base.png)
 ```
 ID: 1
 First name: admin
@@ -35,10 +34,8 @@ One valid ID in, one matching row out. This confirms the field takes raw input a
 
 **Payload:** `1' OR '1'='1 `
 
-![inj1](./screenshot-p1.png)
-
 **Result:** returned all 5 users (admin, Gordon Brown, Hack Me, Pablo Picasso, Bob Smith) instead of just one.
-
+![inj1](./screenshot-p1.png)
 **Why it worked:** the app concatenates my input directly into the query without sanitizing the quote character, turning it into:
 ```sql
 SELECT first_name, last_name FROM users WHERE user_id = '1' OR '1'='1';
@@ -52,9 +49,7 @@ SELECT first_name, last_name FROM users WHERE user_id = '1' OR '1'='1';
 **Payload:** `1' OR '1'='1' -- `
 
 **Result:** same output as Payload 1 — all 5 users returned.
-
 ![inj2](./screenshot-p2.png)
-
 **Why it's different from Payload 1:** functionally identical result here, but the `--` (SQL comment marker) tells the database to ignore everything after it in the original query. This matters in real-world cases where the app's query has extra syntax *after* the injection point (e.g. `... WHERE user_id = 'INPUT' AND active = 1`) — without the comment, that trailing SQL could break the payload or block the bypass. Using `--` is standard practice to make an injection resilient regardless of what comes after the injection point in the original query.
 
 ---
