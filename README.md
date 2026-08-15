@@ -15,7 +15,7 @@ Each attack folder pairs the **offense** (what I ran, what happened, why it work
 
 ## Skills demonstrated
 
-`Docker` · `WSL2` · `DVWA` · `Burp Suite` · `Hydra` · `Python` · `Apache log analysis` · `SQL injection` · `XSS` · `Linux CLI`
+`Docker` · `WSL2` · `DVWA` · `Hydra` · `Python` · `Apache log analysis` · `SQL injection` · `XSS` · `Linux CLI`
 
 ## Full write-up
 
